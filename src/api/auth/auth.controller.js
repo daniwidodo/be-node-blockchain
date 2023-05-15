@@ -19,7 +19,12 @@ router.post("/signup", async (req, res) => {
     // send new user as response
     res.json(user);
   } catch (error) {
-    res.status(400).json({ error });
+    if (error.code === 11000)
+    {res.status(400).json({ message: "user pernah terdaftar" });}
+    else 
+    {
+      res.status(400).json({ error });
+    }
   }
 });
 
@@ -35,7 +40,7 @@ router.post("/login", async (req, res) => {
         // sign token and send it in response
         const token = await jwt.sign({ username: user.username }, SECRET);
         const role = ''
-        res.json({ token: token, username: user.username, role: user.role });
+        res.json({ token: token, username: user.username, pekerjaan: user.pekerjaan, namaLengkap: user.namaLengkap});
       } else {
         res.status(400).json({ error: "password doesn't match" });
       }

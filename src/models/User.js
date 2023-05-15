@@ -4,7 +4,8 @@ const {Schema, model} = require("../utilities/db") // import Schema & model
 const UserSchema = new Schema({
     username: {type: String, unique: true, required: true},
     password: {type: String, required: true},
-    role: {type: String, required: true}
+    pekerjaan: {type: String, required: true},
+    namaLengkap: {type: String, required: true},
 })
 
 // User model
