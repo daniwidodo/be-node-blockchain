@@ -4,6 +4,7 @@ const morgan = require("morgan") //import morgan
 const {log} = require("mercedlogger") // import mercedlogger's log function
 const cors = require("cors") // import cors
 const UserRouter = require("./api/auth/auth.controller") //import User Routes
+const MelonRouter = require("./api/melon/melon.controller") //import User Routes
 
 
 //DESTRUCTURE ENV VARIABLES WITH DEFAULT VALUES
@@ -23,6 +24,7 @@ app.get("/", (req, res) => {
     res.send("this is the test route to make sure server is working")
 })
 app.use("/user", UserRouter) // send all "/user" requests to UserRouter for routing
+app.use("/melon", MelonRouter) // send all "/user" requests to UserRouter for routing
 
 
 // APP LISTENER
