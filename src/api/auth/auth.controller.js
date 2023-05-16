@@ -19,10 +19,9 @@ router.post("/signup", async (req, res) => {
     // send new user as response
     res.json(user);
   } catch (error) {
-    if (error.code === 11000)
-    {res.status(400).json({ message: "user pernah terdaftar" });}
-    else 
-    {
+    if (error.code === 11000) {
+      res.status(400).json({ message: "user pernah terdaftar" });
+    } else {
       res.status(400).json({ error });
     }
   }
@@ -39,8 +38,13 @@ router.post("/login", async (req, res) => {
       if (result) {
         // sign token and send it in response
         const token = await jwt.sign({ username: user.username }, SECRET);
-        const role = ''
-        res.json({ token: token, username: user.username, pekerjaan: user.pekerjaan, namaLengkap: user.namaLengkap});
+        const role = "";
+        res.json({
+          token: token,
+          username: user.username,
+          pekerjaan: user.pekerjaan,
+          namaLengkap: user.namaLengkap,
+        });
       } else {
         res.status(400).json({ error: "password doesn't match" });
       }
@@ -52,4 +56,4 @@ router.post("/login", async (req, res) => {
   }
 });
 
-module.exports = router
+module.exports = router;
