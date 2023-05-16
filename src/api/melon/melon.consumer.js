@@ -37,7 +37,7 @@ const createMelon = async  () => {
             consumedData = await JSON.parse(message.content.toString());
             await Melon.create(consumedData).
                 catch((error) => res.status(400).json({ error }))
-            console.log(consumedData)
+            console.log('data from rabbit ==>', consumedData)
             channel.ack(message)
         });
       } catch (error) {
