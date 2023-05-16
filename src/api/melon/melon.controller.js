@@ -4,7 +4,7 @@ const Melon = require("../../models/Melon"); // import user model
 const { isLoggedIn } = require("../../utilities/middleware"); // import isLoggedIn custom middleware
 const sendToQueue = require("./melon.producer");
 const router = Router(); // create router to create route bundle
-
+const queue = "create-melon"
 // Index Route with isLoggedIn middleware
 router.get("/", isLoggedIn, async (req, res) => {
   //send all Melons with that user
@@ -26,7 +26,7 @@ router.get("/:id", isLoggedIn, async (req, res) => {
 
 // create Route with isLoggedIn middleware
 router.post("/", async (req, res) => {
-  await sendToQueue("create-melon", req.body);
+  await sendToQueue(queue, req.body);
   //create new Melon and send it in response
   res.json(req.body);
 });
@@ -53,4 +53,4 @@ router.delete("/:id", isLoggedIn, async (req, res) => {
   );
 });
 
-module.exports = router;
+module.exports = {router, queue};

@@ -5,7 +5,7 @@ const {log} = require("mercedlogger") // import mercedlogger's log function
 const cors = require("cors") // import cors
 const amqplib = require("amqplib");
 const Melon = require("../../models/Melon"); // import user model
-
+const {queue} = require("../melon/melon.controller")
 //DESTRUCTURE ENV VARIABLES WITH DEFAULT VALUES
 const {
     PORT, 
@@ -28,7 +28,6 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => log.green("SERVER STATUS", `Listening on port ${PORT}`))
 
 const createMelon = async  () => {
-    const queue = 'create-melon'
     try {
         let connection = await amqplib.connect(RABBITMQ_URL);
         let channel = await connection.createChannel();
