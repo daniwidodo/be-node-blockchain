@@ -4,7 +4,7 @@
 
 ### CRUD
 
-- ~~Auth
+- ~~Auth~~
 - ~~Melon
 - ~~Suhu
 - Transaksi
