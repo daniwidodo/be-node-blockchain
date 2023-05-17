@@ -14,6 +14,7 @@
 
 - ~~RabbitMQ~~
 - Hyperledger
+- ~~MongoDB~~
 
 ### Deployment
 - Under Progress
