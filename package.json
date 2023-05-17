@@ -4,8 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "PORT=3080 node ./src/server.js & PORT=3081 node ./src/api/melon/melon.consumer.js & PORT=3082 node ./src/api/suhu/suhu.consumer.js",
-    "dev": "PORT=3080 nodemon ./src/server.js & PORT=3081 nodemon ./src/api/melon/melon.consumer.js & PORT=3082 nodemon ./src/api/suhu/suhu.consumer.js"
+    "start": "PORT=3080 pm2 start ./src/server.js & PORT=3081 pm2 start ./src/api/melon/melon.consumer.js & PORT=3082 pm2 start ./src/api/suhu/suhu.consumer.js",
+    "dev": "PORT=3080 nodemon ./src/server.js & PORT=3081 nodemon ./src/api/melon/melon.consumer.js & PORT=3082 nodemon ./src/api/suhu/suhu.consumer.js",
+    "stop": "PORT=3080 pm2 stop ./src/server.js & PORT=3081 pm2 stop ./src/api/melon/melon.consumer.js & PORT=3082 pm2 stop ./src/api/suhu/suhu.consumer.js"
+
   },
   "author": "",
   "license": "ISC",
@@ -20,7 +22,8 @@
     "mercedlogger": "^1.0.1",
     "mongodb": "^5.5.0",
     "mongoose": "^7.1.1",
-    "morgan": "^1.10.0"
+    "morgan": "^1.10.0",
+    "pm2": "^5.3.0"
   },
   "devDependencies": {
     "@types/express": "^4.17.17",
