@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "PORT=3080 node ./src/server.js & PORT=3081 node ./src/api/melon/melon.consumer.js",
-    "dev": "PORT=3080 nodemon ./src/server.js & PORT=3081 nodemon ./src/api/melon/melon.consumer.js"
+    "start": "PORT=3080 node ./src/server.js & PORT=3081 node ./src/api/melon/melon.consumer.js & PORT=3082 node ./src/api/suhu/suhu.consumer.js",
+    "dev": "PORT=3080 nodemon ./src/server.js & PORT=3081 nodemon ./src/api/melon/melon.consumer.js & PORT=3082 nodemon ./src/api/suhu/suhu.consumer.js"
   },
   "author": "",
   "license": "ISC",
