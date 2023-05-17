@@ -2,7 +2,7 @@ require("dotenv").config(); // load .env variables
 const { Router } = require("express"); // import router from express
 const Melon = require("../../models/Melon"); // import user model
 const { isLoggedIn } = require("../../utilities/middleware"); // import isLoggedIn custom middleware
-const sendToQueue = require("./melon.producer");
+const sendToQueue = require(".././../utilities/producer");
 const router = Router(); // create router to create route bundle
 const queue = "create-melon"
 // Index Route with isLoggedIn middleware
