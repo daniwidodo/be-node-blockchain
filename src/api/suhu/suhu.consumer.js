@@ -4,8 +4,8 @@ const morgan = require("morgan") //import morgan
 const {log} = require("mercedlogger") // import mercedlogger's log function
 const cors = require("cors") // import cors
 const amqplib = require("amqplib");
-const Melon = require("../../models/Melon"); // import user model
-const {melonQueue} = require("../melon/melon.controller")
+const Suhu = require("../../models/Suhu"); // import user model
+const {suhuQueue} = require("../suhu/suhu.controller")
 //DESTRUCTURE ENV VARIABLES WITH DEFAULT VALUES
 const {
     PORT, 
@@ -27,20 +27,20 @@ app.get("/", (req, res) => {
 // APP LISTENER
 app.listen(PORT, () => log.green("SERVER STATUS", `Listening on port ${PORT}`))
 
-const createMelon = async  () => {
+const createSuhu = async  () => {
     try {
         let connection = await amqplib.connect(RABBITMQ_URL);
         let channel = await connection.createChannel();
-        await channel.assertQueue(melonQueue);
-        channel.consume(melonQueue, async (message) => {
+        await channel.assertQueue(suhuQueue);
+        channel.consume(suhuQueue, async (message) => {
             consumedData = await JSON.parse(message.content.toString());
-            await Melon.create(consumedData).
+            await Suhu.create(consumedData).
                 catch((error) => res.status(400).json({ error }))
-            console.log('data from melonQueue ==>', consumedData)
+            console.log('data from suhuQueue ==>', consumedData)
             channel.ack(message)
         });
       } catch (error) {
         console.log(error);
       }
 }
-createMelon();
+createSuhu();
