@@ -4,11 +4,11 @@
 
 ### CRUD
 
-~~ Auth ~~
-~~ Melon ~~
-~~ Suhu ~~
-Transaksi
-History
+- ~~ Auth ~~
+- ~~ Melon ~~
+- ~~ Suhu ~~
+- Transaksi
+- History
 
 ### Integration
 
