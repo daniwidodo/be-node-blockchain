@@ -5,14 +5,14 @@
 ### CRUD
 
 - ~~Auth~~
-- ~~Melon
-- ~~Suhu
+- ~~Melon~~
+- ~~Suhu~~
 - Transaksi
 - History
 
 ### Integration
 
-- ~~RabbitMQ
+- ~~RabbitMQ~~
 - Hyperledger
 
 ### Deployment
