@@ -5,7 +5,18 @@ const { isLoggedIn } = require("../../utilities/middleware"); // import isLogged
 const sendToQueue = require(".././../utilities/producer");
 const suhuRouter = Router(); // create router to create route bundle
 const suhuQueue = "create-Suhu"
-// Index Route with isLoggedIn middleware
+
+const amqplib = require("amqplib");
+const { RABBITMQ_URL } = process.env;
+
+const startChannel = async () => {
+  let connection = await amqplib.connect(RABBITMQ_URL);
+  let channel = await connection.createChannel();
+  await channel.assertQueue(suhuQueue);
+}
+
+startChannel()
+
 suhuRouter.get("/", isLoggedIn, async (req, res) => {
   //send all Suhus with that user
   res.json(
@@ -26,7 +37,9 @@ suhuRouter.get("/:id", isLoggedIn, async (req, res) => {
 
 // create Route with isLoggedIn middleware
 suhuRouter.post("/", async (req, res) => {
-  await sendToQueue(suhuQueue, req.body);
+  // await sendToQueue(suhuQueue, req.body);
+  channel.sendToQueue(suhuQueue, Buffer.from(JSON.stringify(req.body)));
+
   //create new Suhu and send it in response
   res.json(req.body);
 });

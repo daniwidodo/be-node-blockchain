@@ -44,3 +44,29 @@ const createSuhu = async  () => {
       }
 }
 createSuhu();
+
+const sendSuhuEvery30sec = async () => {
+    try {
+      console.log('start dummy');
+  
+      let randomNumber = () => Math.floor(Math.random() * (33 - 23)) + 23
+  
+      let connection = await amqplib.connect(RABBITMQ_URL);
+      let channel = await connection.createChannel();
+      await channel.assertQueue(suhuQueue);
+      
+  
+      setInterval(() => {
+        let data = {
+          tanggal: new Date(),
+          waktu: new Date().getTime(),
+          suhu: randomNumber()
+        }
+        channel.sendToQueue(suhuQueue, Buffer.from(JSON.stringify(data)));
+      }, 30000)
+    } catch (error) {
+      console.log(error);
+    }
+   ;
+  }
+  sendSuhuEvery30sec()
